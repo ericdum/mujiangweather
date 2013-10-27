@@ -16,9 +16,9 @@ var smarttime = (function(){
         if( timestamp > now - SECOND * 10){
             return "刚刚";
         } else if( timestamp > now - MINUTE){
-            return parseInt((now - time) / ONE_SECOND / 10).toString() + "0秒前";
+            return parseInt((now - time) / SECOND / 10).toString() + "0秒前";
         } else if( timestamp > now - HOUR){
-            return parseInt((now - time) / ONE_MINUTE) + "分钟前";
+            return parseInt((now - time) / MINUTE) + "分钟前";
         } else if( timestamp > now - DAY){
             return "今天" + time.getHours() + "点";
         } else if( timestamp > now - 2*DAY){
