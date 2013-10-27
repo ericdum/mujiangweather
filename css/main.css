@@ -1,0 +1,59 @@
+.clearfix:after {
+    clear: both;
+    content: ' ';
+    display: block;
+    font-size: 0;
+    line-height: 0;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.clearfix {*height: 100%;}
+* html .clearfix { height: 1%; }
+
+
+body {
+    font: 12px/1.8 "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    background: white /*url(/imgs/bg.png)*/;
+}
+
+.icon {
+    background-size: 100% 100%;
+    border-radius: 100px;
+}
+
+#weather {
+    width: 260px;
+    margin: 20px auto 0;
+}
+
+#weather .icon{
+    float: left;
+    margin-top: 20px;
+    width: 100px;
+    height: 100px;
+}
+
+#weather dl{
+    float: left;
+    text-align: right;
+    margin: 0;
+    width: 140px;
+}
+
+#weather dl dt{
+    white-space: nowrap;
+}
+
+#weather .temp{
+    font-size: 30px;
+    line-height: 50px;
+    white-space: nowrap;
+}
+
+canvas {
+    margin-top: 50px;
+}
