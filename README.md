@@ -16,3 +16,4 @@ mujiangweather
 4. 错误处理
 5. 图片优化
 6. retina优化
+7. 支持旋转、window.resize
