@@ -4,6 +4,7 @@ var chart = (function(){
 
     function chart(data){
         this.canvas = document.getElementById('forecast');
+        this.canvas.width = document.width;
         this.canvas.height = document.height - this.canvas.offsetTop;
         this.ctx = this.canvas.getContext('2d');
         this.width  = parseFloat(this.canvas.offsetWidth);
