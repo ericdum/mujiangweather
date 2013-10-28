@@ -5,7 +5,7 @@ var chart = (function(){
     function chart(data){
         this.canvas = document.getElementById('forecast');
         this.canvas.width = document.width;
-        this.canvas.height = document.height - this.canvas.offsetTop;
+        this.canvas.height = document.documentElement.clientHeight - this.canvas.offsetTop;
         this.ctx = this.canvas.getContext('2d');
         this.width  = parseFloat(this.canvas.offsetWidth);
         this.height = parseFloat(this.canvas.offsetHeight);
@@ -51,7 +51,7 @@ var chart = (function(){
             }
         }
 
-        this.yintv = (this.height-3*padding)/(this.max-this.min);
+        this.yintv = (this.height-3*padding-(this.xintv * 0.7))/(this.max-this.min);
 
         this.drawBackground();
         this.drawHLine();
@@ -123,6 +123,15 @@ var chart = (function(){
             this.ctx.textBaseline = "top";
             this.ctx.fillStyle = "#15556d";
             this.ctx.fillText(["周日", "周一", "周二", "周三", "周四", "周五", "周六"][this.temp[i].time.getDay()], this.getX(i), 5);
+            var img = new Image();
+            var chart = this;
+            var width = this.xintv * 0.7;
+            var left = this.xintv * 0.35;
+            img.src = '.'+this.temp[i].img;
+            img.i   = i;
+            img.onload = function(){
+                chart.ctx.drawImage(this, 0, 0, 300, 300, chart.getX(this.i)-left, 25, width, width);
+            }
         }
     }
 
@@ -153,6 +162,7 @@ var chart = (function(){
     }
 
     chart.prototype.getY = function( temp ){
+        this.yintv = (this.height-3*padding-(this.xintv * 0.7))/(this.max-this.min);
         return parseInt(this.height - padding - this.yintv * ( temp - this.min ));
     }
     
