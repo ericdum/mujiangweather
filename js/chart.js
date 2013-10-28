@@ -66,6 +66,9 @@ var chart = (function(){
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight - this.canvas.offsetTop;
         this.ctx = this.canvas.getContext('2d');
+        if( this.canvas.height < 300 ) {
+            this.canvas.height = 300;
+        }
 
         this.width  = parseFloat(this.canvas.offsetWidth);
         this.height = parseFloat(this.canvas.offsetHeight);
