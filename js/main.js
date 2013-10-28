@@ -32,7 +32,7 @@ function require( list, callback ){
             requiredloading--;
             onLoad();
         }
-        script.src = '/js/'+filename+'.js';
+        script.src = './js/'+filename+'.js';
         var s = document.getElementsByTagName('script')[0]; 
         s.parentNode.insertBefore(script, s);
     }
@@ -74,7 +74,7 @@ require([
                 time     : data.dt
             });
 
-            $('#weather .icon').css('background-image', 'url('+ weather.img +')');
+            $('#weather .icon').css('background-image', 'url(./'+ weather.img +')');
 
             $('#weather .temp').text(weather.formatedTemp('cur'));
             $('#weather .name').text(weather.formatedName());
