@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
     <head>
-        <title>木匠天气</title>
         <meta charset="utf-8">
+        <title>木匠天气</title>
         <meta content="yes" name="apple-mobile-web-app-capable">
         <meta content="yes" name="apple-touch-fullscreen">
         <meta content="black" name="apple-mobile-web-app-status-bar-style">
@@ -24,16 +24,7 @@
             </dl>
         </header>
 
-        <canvas id="forecast" width=320 height=200>
-
-        </canvas>
-<!--
-    <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
-
-    <circle cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="red"/>
-
--->
-        </div>
+        <canvas id="forecast" width=320 height=200> </canvas>
         <script src="/js/main.js"></script>
     </body>
 </html>
