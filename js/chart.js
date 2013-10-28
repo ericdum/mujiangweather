@@ -65,10 +65,11 @@ var chart = (function(){
         this.ctx.lineWidth = lineWidth;
         this.ctx.lineCap = 'round';
         this.ctx.beginPath();
-        this.ctx.moveTo(this.getX(0), this.getY(this.temp[0].temp.cur));
-        for( var i=1; i < this.temp.length; i++ ){
+        this.ctx.moveTo(0, this.getY(this.temp[0].temp.cur));
+        for( var i=0; i < this.temp.length; i++ ){
             this.ctx.lineTo(this.getX(i), this.getY(this.temp[i].temp.cur));
         }
+        this.ctx.lineTo(this.width, this.getY(this.temp[i-1].temp.cur));
         this.ctx.stroke();
     }
 
@@ -77,10 +78,11 @@ var chart = (function(){
         this.ctx.lineWidth = lineWidth;
         this.ctx.lineCap = 'round';
         this.ctx.beginPath();
-        this.ctx.moveTo(this.getX(0), this.getY(this.temp[0].temp.feels));
-        for( var i=1; i < this.temp.length; i++ ){
+        this.ctx.moveTo(0, this.getY(this.temp[0].temp.feels));
+        for( var i=0; i < this.temp.length; i++ ){
             this.ctx.lineTo(this.getX(i), this.getY(this.temp[i].temp.feels));
         }
+        this.ctx.lineTo(this.width, this.getY(this.temp[i-1].temp.feels));
         this.ctx.stroke();
     }
 
