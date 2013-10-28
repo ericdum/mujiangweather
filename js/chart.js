@@ -3,19 +3,11 @@ var chart = (function(){
     var lineWidth = 3;
 
     function chart(data){
-        this.canvas = document.getElementById('forecast');
-        this.canvas.width = document.width;
-        this.canvas.height = document.documentElement.clientHeight - this.canvas.offsetTop;
-        this.ctx = this.canvas.getContext('2d');
-        this.width  = parseFloat(this.canvas.offsetWidth);
-        this.height = parseFloat(this.canvas.offsetHeight);
-        this.xintv = parseInt((this.width - 2*padding) / data.length);
-        this.begin = (this.width - data.length*this.xintv) / 2;
-        this.yintv = 0;
+        //初始化数据
+        this.temp = [];
         this.min=100;
         this.max=0;
-
-        this.temp = [];
+        this.length = data.length;
 
         for(var i in data){
             this.temp.push(new detailedWeather({
@@ -50,8 +42,40 @@ var chart = (function(){
                 this.min = feels;
             }
         }
+        this.max = Math.ceil(this.max);
+        this.min = Math.floor(this.min);
 
-        this.yintv = (this.height-3*padding-(this.xintv * 0.7))/(this.max-this.min);
+        //初始化元素
+        this.init();
+
+        var self = this;
+        var resizing = false;
+        $(window).resize(function(){
+            if( ! resizing ){
+                clearTimeout(resizing);
+            }
+            resizing = setTimeout(function(){
+                self.init();
+                resizing = false;
+            }, 300);
+        });
+    }
+
+    chart.prototype.init = function() {
+        this.canvas = document.getElementById('forecast');
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight - this.canvas.offsetTop;
+        this.ctx = this.canvas.getContext('2d');
+
+        this.width  = parseFloat(this.canvas.offsetWidth);
+        this.height = parseFloat(this.canvas.offsetHeight);
+
+        this.xintv = parseInt((this.width - 2*padding) / this.length);
+
+        this.begin = (this.width - this.length*this.xintv) / 2;
+        this.bodyHeight = this.height - 3*padding - this.xintv*0.7;
+
+        this.yintv = this.bodyHeight/(this.max-this.min);
 
         this.drawBackground();
         this.drawHLine();
@@ -143,8 +167,9 @@ var chart = (function(){
         for( var y = min; y <= max; y++ ){
             if( y % 5 == 0 || y == min || y == max ){
                 this.ctx.fillStyle = "#aaaaaa";
+                console.log(y, this.getY(y));
                 this.ctx.fillRect( 0, this.getY(y), 5, 1);
-                this.ctx.fillRect( this.getX(0)-10, this.getY(y), this.width, 1);
+                this.ctx.fillRect( 35, this.getY(y), this.width, 1);
                 this.ctx.font = "10px Times New Roman";
                 this.ctx.textAlign = "left";
                 this.ctx.textBaseline = "middle";
@@ -162,8 +187,7 @@ var chart = (function(){
     }
 
     chart.prototype.getY = function( temp ){
-        this.yintv = (this.height-3*padding-(this.xintv * 0.7))/(this.max-this.min);
-        return parseInt(this.height - padding - this.yintv * ( temp - this.min ));
+        return parseInt(this.height - this.yintv * ( temp - this.min ) - padding);
     }
     
     return chart;

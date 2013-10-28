@@ -13,6 +13,7 @@ mujiangweather
 
 1. 基本天气的获取
 2. 7日预报显示温度区间、白天温度和白天体感温度
+3. 支持旋转、window.resize
 
 **尚未实现：**
 
@@ -22,4 +23,3 @@ mujiangweather
 4. 错误处理
 5. 图片优化
 6. retina优化
-7. 支持旋转、window.resize
